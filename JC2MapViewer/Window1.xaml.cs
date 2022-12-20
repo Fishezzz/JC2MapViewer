@@ -36,10 +36,10 @@ using Microsoft.Win32;
 
 namespace JC2MapViewer
 {
-	/// <summary>
-	/// Interaction logic for Window1.xaml
-	/// </summary>
-	public partial class Window1 : INotifyPropertyChanged
+    /// <summary>
+    /// Interaction logic for Window1.xaml
+    /// </summary>
+    public partial class Window1 : Window, INotifyPropertyChanged
 	{
 		SaveFile _saveFile;
 		bool _displaySettlements;
@@ -97,7 +97,7 @@ namespace JC2MapViewer
 				try
 				{
 					_saveFile = new SaveFile(e.FullPath);
-					Dispatcher.Invoke(new Action(loadSavedInfo));
+                    Dispatcher.Invoke(DispatcherPriority.Background, new Action(loadSavedInfo));
 					return;
 				}
 				catch (IOException)
